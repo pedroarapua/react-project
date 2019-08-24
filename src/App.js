@@ -1,18 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+import Login from './pages/Login';
+import FavoriteList from './pages/FavoriteList';
+import Search from './pages/Search';
+import Information from './pages/Information';
+import NotFound from './pages/NotFound';
+
+class App extends Component {
+    render(){
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" exact component={Login} />
+                    <Route path="/favoritos" component={FavoriteList} />
+                    <Route path="/busca" component={Search} />
+                    <Route path="/informacao" component={Information} />
+                    <Route path='*' component={NotFound} />
+                </Switch>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;

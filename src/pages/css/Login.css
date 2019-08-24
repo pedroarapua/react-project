@@ -1,0 +1,10 @@
+.login-wrapper{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.login-title{
+    display: block;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
