@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg'
-import './css/Login.css';
+import logo from '../images/logo.svg'
+import './Login.css';
 
 export default class Login extends Component {
     state ={
@@ -16,7 +16,7 @@ export default class Login extends Component {
 
         localStorage.setItem('@MarvelHeroesList:username', username);
         
-        this.props.history.push('/mais-recentes');
+        this.props.history.push('/busca');
     }
 
     handleInputChange = e => {

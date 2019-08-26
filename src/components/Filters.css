@@ -1,0 +1,14 @@
+.filter-toggle{
+    align-items: center;
+    background-color: #3759a3;
+    cursor: pointer;
+    display: flex;
+    padding: 0 25px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.filter-wrapper-content{
+    display: none;
+}

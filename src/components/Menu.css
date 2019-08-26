@@ -1,0 +1,65 @@
+/* TOP BAR */
+.filter-bar{
+    background-color: #1e1f2e;
+    padding: 19px 0px;
+    position: relative;
+    text-align: center;
+}
+@media only screen and (max-width: 577px){
+    .filter-bar{
+        padding: 10px 0;
+    }
+    .filter-bar h1{
+        font-size: 18px;
+        padding: 0 15px;
+        text-align: left;
+    }
+}
+/* TOP BAR */
+/* MENU */
+.menu-wrapper{
+    background-color: #1e1f2e;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+.menu-icons{
+    font-size: 30px;
+}
+.flex-list li span, .flex-list li a {
+    display: block;
+}
+.flex-list li span:hover, .flex-list li a:hover, .flex-list li.active span, .flex-list li.active a{
+    background-color: #3759a3;
+}
+@media only screen and (max-width: 767px){
+    .menu-icons{
+        font-size: 20px;
+    }
+    .menu-wrapper{
+        top: inherit;
+        right: 0;
+    }
+    .flex-list{
+        display: flex;
+    }
+    .flex-list li{
+        display: inline-block;
+        flex-grow: 1;
+        text-align: center;
+    }
+    .flex-list li span, .flex-list li a {
+        padding: 10px 0;
+    }
+}
+@media only screen and (min-width: 768px){
+    .flex-list li span, .flex-list li a{
+        cursor: pointer;
+        display: block;
+        padding: 15px;
+        transition: background-color .3s;
+    }
+}
+/* MENU */

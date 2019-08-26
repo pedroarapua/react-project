@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import ListBlock from '../components/List';
 import api from '../services/api';
+import ListBlock from '../components/List';
+import Menu from '../components/Menu';
+import Filters from '../components/Filters';
 
 export default class FavoriteList extends Component {
     state = {
@@ -14,8 +16,11 @@ export default class FavoriteList extends Component {
 
     render() {
         return(
-            <div className="favorite-list-wrapper">
-                <h1 className="text-center">Meus Heróis Favoritos</h1>
+            <div className="wrapper favorite-list-wrapper">
+                <div className="filter-bar">
+                    <h1 className="title">Meus Heróis Favoritos</h1>
+                    <Filters />
+                </div>
                 <div className="container">
                     <div className="flex-box">
                         {this.state.heroes.map(hero => (
@@ -23,6 +28,7 @@ export default class FavoriteList extends Component {
                         ))}
                     </div>
                 </div>
+                <Menu />
             </div>
         );
     }

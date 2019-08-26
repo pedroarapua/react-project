@@ -1,0 +1,18 @@
+.login-wrapper{
+    background-image: url('../images/background-desktop.jpg');
+    background-size: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+}
+.login-title{
+    display: block;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+@media only screen and (max-width: 767px){
+    .login-wrapper{
+        background-image: url('../images/background-mobile.jpg');
+    }
+}

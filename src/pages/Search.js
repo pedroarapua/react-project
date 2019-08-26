@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ListBlock from '../components/List';
 import api from '../services/api';
+import ListBlock from '../components/List';
 import Menu from '../components/Menu';
+import Filters from '../components/Filters';
 
 export default class Search extends Component {
     state = {
@@ -15,9 +16,10 @@ export default class Search extends Component {
 
     render() {
         return (
-            <div className="search-list-wrapper">
+            <div className="wrapper search-list-wrapper">
                 <div className="filter-bar">
                     <h1 className="title">Últimos Atualizados</h1>
+                    <Filters />
                 </div>
                 <div className="container">
                     <div className="flex-box">

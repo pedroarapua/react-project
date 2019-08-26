@@ -3,7 +3,7 @@ import {IconContext } from "react-icons";
 import {FaQuestion, FaRegHeart , FaHeart} from "react-icons/fa";
 import {Link} from 'react-router-dom';
 
-import "./css/List.css";
+import "./List.css";
 
 export default class List extends Component {
     render() {
@@ -13,10 +13,12 @@ export default class List extends Component {
             <div className="list-block">
                 <div className="list-block-content">
                     <div className="list-block-thumb">
-                        <picture>
-                            <source srcSet={hero.thumbnail.path + "/standard_medium." + hero.thumbnail.extension} media="(max-width: 577px)"/>
-                            <img src={hero.thumbnail.path + "/standard_xlarge." + hero.thumbnail.extension} alt={hero.name} text={hero.name} />
-                        </picture>
+                        <Link to={"/informacao/" + hero.id}>
+                            <picture>
+                                <source srcSet={hero.thumbnail.path + "/standard_medium." + hero.thumbnail.extension} media="(max-width: 577px)"/>
+                                <img src={hero.thumbnail.path + "/standard_xlarge." + hero.thumbnail.extension} alt={hero.name} text={hero.name} />
+                            </picture>
+                        </Link>
                     </div>
                     <div className="list-block-info">
                         <h2>{hero.name}</h2>

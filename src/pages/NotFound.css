@@ -1,0 +1,32 @@
+.not-found-wrapper{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2%;
+}
+.not-found-title{
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.not-found-wrapper .btn{
+    margin-top: 25px;
+    width: auto;
+}
+@media only screen and (max-width: 576px){
+    .not-found-wrapper{
+        padding-top: 10%;
+    }
+    .not-found-image{
+        max-width: 110px;
+    }
+    .not-found-title{
+        font-size: 20px;
+        letter-spacing: 0;
+    }
+    .not-found-info{
+        font-size: 15px;
+        margin-top: 20px;
+    }
+}

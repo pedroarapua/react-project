@@ -23,12 +23,21 @@ const getMethods = {
         const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24';
         const filterOrder = '&orderBy=' + order;
         const resp = api.get(url + filterOrder);
+
         return resp;
     },
     /* Busca a informação de apenas um herói, de acordo com seu "ID" */
     getHero (id){
         const url = 'characters/' + id + '?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash;
-        return api.get(url);
+        const resp = api.get(url)
+            .then(response => {
+                return response;
+            })
+            .catch(error => {
+                return error.response;
+            });
+
+        return resp;
     }
 };
         

@@ -1,0 +1,40 @@
+.information-wrapper-content .container{
+    padding-top: 35px;
+}
+.information-not-found .container{
+    padding-top: 10%;
+}
+.information-wrapper-content .buttons .btn{
+    width: auto;
+}
+.information-wrapper-content .buttons{
+    margin-top: 40px;
+}
+.information-not-found .title{
+    font-size: 28px;
+}
+.information-image img{
+    border-radius: 8px;
+    border: 3px solid #424461;
+}
+@media only screen and (max-width: 767px){
+    .information-image{
+        text-align: center;
+    }
+    .information-wrapper-content .buttons .btn{
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100%;
+    }
+    .information-description .title{
+        font-size: 22px;
+    }
+}
+@media only screen and (min-width: 578px) and (max-width: 767px){
+
+}
+@media only screen and (min-width: 768px){
+    .information-description .title{
+        font-size: 28px;
+    }
+}
