@@ -16,6 +16,77 @@
     }
 }
 /* TOP BAR */
+/* SEARCH BAR */
+.search-bar-wrapper{
+    background-color: rgba(36, 38, 65, .98);
+    display: flex;
+    position: fixed;
+    right: 0;
+    left: 60px;
+    top: 0;
+    bottom: 0;
+    transition: opacity .3s, visibility .3s;
+    opacity: 0;
+    visibility: hidden;
+}
+.open-search{
+    opacity: 1;
+    visibility: visible;
+}
+.search-bar-container{
+    margin: auto;
+    max-width: 800px;
+    padding: 0 25px;
+    width: 100%;
+}
+.search-bar-container .title{
+    text-align: center;
+    font-size: 30px;
+}
+.search-bar-container .input-group{
+    margin-top: 30px;
+}
+.close-search-bar{
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+@media only screen and (max-width: 767px){
+    .search-bar-container .input-group {
+        margin-top: 15px;
+    }
+    .close-search-bar{
+        font-size: 26px;
+        left: auto;
+        top: 8px;
+    }
+    .search-bar-wrapper{
+        left: 0;
+    }
+    .search-bar-container{
+        margin: unset;
+        padding-top: 25px;
+    }
+    .search-bar-container .title{
+        font-size: 21px;
+    }
+}
+@media only screen and (min-width: 768px){
+    .close-search-bar{
+        font-size: 30px;
+        top: 20px;
+    }
+    .search-bar-container .form-input{
+        height: 65px;
+        font-size: 20px;
+    }
+    .search-bar-container .input-group > .btn {
+        color: #747474;
+        font-size: 38px;
+        height: 65px;
+    }
+}
+/* SEARCH BAR */
 /* MENU */
 .menu-wrapper{
     background-color: #1e1f2e;
@@ -30,9 +101,6 @@
 }
 .flex-list li span, .flex-list li a {
     display: block;
-}
-.flex-list li span:hover, .flex-list li a:hover, .flex-list li.active span, .flex-list li.active a{
-    background-color: #3759a3;
 }
 @media only screen and (max-width: 767px){
     .menu-icons{
@@ -53,8 +121,14 @@
     .flex-list li span, .flex-list li a {
         padding: 10px 0;
     }
+    .flex-list li.active span, .flex-list li.active a{
+        background-color: #3759a3;
+    }
 }
 @media only screen and (min-width: 768px){
+    .flex-list li span:hover, .flex-list li a:hover, .flex-list li.active span, .flex-list li.active a{
+        background-color: #3759a3;
+    }
     .flex-list li span, .flex-list li a{
         cursor: pointer;
         display: block;

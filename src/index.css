@@ -119,8 +119,33 @@ ul{
     transition: border-color .3s;
     width: 100%;
 }
-.form-input:focus{
+.input-group{
+    display: flex;
+}
+.input-group > .form-input{
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+.input-group > .btn{
+    background-color: #FFF;
+    border-color: #DDD;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    color: #000;
+    font-size: 17px;
+    width: auto;
+}
+.input-group > .btn:hover{
+    background-color: #FFF;
+    border-color: #DDD;
+}
+.form-input:focus, .input-group > .form-input:focus + .btn{
     border-color: #03b3fc;
+}
+.form-group label{
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
 }
 /* FORM */
 /* BUTTONS */

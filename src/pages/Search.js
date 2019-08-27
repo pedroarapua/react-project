@@ -10,7 +10,7 @@ export default class Search extends Component {
     };
 
     async componentDidMount(){
-        const response = await api.getHeroes('-modified');
+        const response = await api.getHeroes('-modified', this.props.location.search);
         this.setState({heroes: response.data.data.results});
     }
 

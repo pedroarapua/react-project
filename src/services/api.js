@@ -19,7 +19,13 @@ const api = axios.create({
 
 const getMethods = {
     /* Busca a informação de todos os heróis com base nos filtros selecionados */
-    getHeroes (order){
+    getHeroes (order, params){
+        const getParams = new URLSearchParams(params);
+
+        if(getParams.get('name')){
+            console.log('nameStartsWith');
+        }
+
         const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24';
         const filterOrder = '&orderBy=' + order;
         const resp = api.get(url + filterOrder);
