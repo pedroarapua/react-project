@@ -3,18 +3,43 @@ import api from '../services/api';
 import ListBlock from '../components/List';
 import Menu from '../components/Menu';
 import Filters from '../components/Filters';
+import SearchNotFound from '../components/SearchNotFound';
 
 export default class Search extends Component {
     state = {
-        heroes: []
+        heroes: [],
+        notFound: false
     };
 
-    async componentDidMount(){
-        const response = await api.getHeroes('-modified', this.props.location.search);
-        this.setState({heroes: response.data.data.results});
+    componentDidMount(){
+        this.handleContentUpdate();
+    }
+
+    handleContentUpdate = async parameterSearch =>{
+        const response = await api.getHeroes('-modified', parameterSearch !== undefined ? parameterSearch : this.props.location.search);
+        if(response.data.data.count){
+            this.setState({
+                heroes: response.data.data.results,
+                notFound: false
+            });
+        } else {
+            this.setState({
+                notFound: true
+            });
+        }
     }
 
     render() {
+        let pageResults;
+
+        if(this.state.notFound){
+            pageResults = <SearchNotFound typePage="search"/>;
+        } else {
+            pageResults = this.state.heroes.map(hero => (
+                <ListBlock key={hero.id} hero={hero} />
+            ))
+        }
+
         return (
             <div className="wrapper search-list-wrapper">
                 <div className="filter-bar">
@@ -23,12 +48,10 @@ export default class Search extends Component {
                 </div>
                 <div className="container">
                     <div className="flex-box">
-                        {this.state.heroes.map(hero => (
-                            <ListBlock key={hero.id} hero={hero} />
-                        ))}
+                        {pageResults}
                     </div>
                 </div>
-                <Menu />
+                <Menu updateResults={this.handleContentUpdate}/>
             </div>
         );
     }

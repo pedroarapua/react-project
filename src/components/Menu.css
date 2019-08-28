@@ -1,7 +1,7 @@
 /* TOP BAR */
 .filter-bar{
     background-color: #1e1f2e;
-    padding: 19px 0px;
+    padding: 19px 0;
     position: relative;
     text-align: center;
 }
@@ -13,6 +13,11 @@
         font-size: 18px;
         padding: 0 15px;
         text-align: left;
+    }
+}
+@media only screen and (min-width: 768px){
+    .filter-bar{
+        padding-left: 60px;
     }
 }
 /* TOP BAR */

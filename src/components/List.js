@@ -6,6 +6,22 @@ import {Link} from 'react-router-dom';
 import "./List.css";
 
 export default class List extends Component {
+    state = {
+        favorites: []
+    }
+
+    /* Processo para favoritar herói */
+    handleFavoriteHero(heroId){
+        this.setState(state => {
+            const favorites = state.favorites.concat(heroId);
+            return {
+                favorites
+            };
+        });
+        
+        console.log(this.state);
+    }
+
     render() {
         const {hero} = this.props;
 
@@ -25,7 +41,7 @@ export default class List extends Component {
                         <div className="list-block-buttons">
                             <IconContext.Provider value={{className: "btn-icons" }}>
                                 <Link to={"/informacao/" + hero.id} className="btn btn-info" title="Mais Informações"><FaQuestion /></Link>
-                                <span className="btn" title="Adicionar aos Favoritos"><FaRegHeart /></span>
+                                <span className="btn" title="Adicionar aos Favoritos" onClick={() => this.handleFavoriteHero(hero.id)}> <FaRegHeart /></span>
                             </IconContext.Provider>
                         </div>
                     </div>

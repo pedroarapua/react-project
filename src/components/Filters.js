@@ -15,8 +15,7 @@ class FiltersWrapper extends Component {
                     <form>
                         <div className="form-group">
                             <label>Ordernar por:</label>
-                            <select className="form-input">
-                                <option>Selecionar</option>
+                            <select className="form-input" defaultValue="modified">
                                 <option value="name">Nome: A - Z</option>
                                 <option value="-name">Nome: Z - A</option>
                                 <option value="modified">Modificação: Mais Recentes</option>

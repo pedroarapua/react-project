@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, withRouter, Redirect } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {IconContext} from "react-icons";
 import {FaSearch, FaHeart, FaHome, FaTimes} from "react-icons/fa";
 import "./Menu.css";
@@ -7,20 +7,21 @@ import "./Menu.css";
 /* Componente da barra de busca, que será exibida ao clicar no botão "Buscar" do menu principal */
 class SearchBar extends Component {
     state ={
-        search: '',
-        redirect: false
+        search: ''
     };
     
     handleSearch = e => {
         const {search} = this.state;
         if(!search.length) return;
-        this.setState({
-            redirect: true
+        this.props.history.push({
+            pathname: '/busca',
+            search: '?name=' + search
         });
-    }
-    
-    renderRedirect(){
-        if (this.state.redirect) return <Redirect to={"/busca?name=" + this.state.search} />
+        this.props.updateSearchResults('?name=' + search);
+        this.props.updateOpen();
+        this.setState({
+            search: ''
+        });
     }
 
     handleSearchInputChange = e => {
@@ -38,12 +39,11 @@ class SearchBar extends Component {
                     </span>
                     <h2 className="title">Quem você está procurando?</h2>
                     <div className="input-group">
-                        {this.renderRedirect()}
                         <input 
                             className="form-input"
                             value={this.state.search} 
                             type="text" 
-                            placeholder="Ex: Spider-Man, Wolwerine, Iron Man etc..."
+                            placeholder="Ex: Spider-Man, Hulk, Iron Man etc..."
                             onChange={this.handleSearchInputChange}
                         />
                         <span onClick={this.handleSearch} title="Pesquisar" className="btn"><FaSearch /></span>
@@ -82,7 +82,7 @@ class Menu extends Component {
                         </IconContext.Provider>
                     </ul>
                 </nav>
-                <SearchBar className={openStatus} updateOpen={this.handleOpenSearch} history={this.props.history} />
+                <SearchBar className={openStatus} updateOpen={this.handleOpenSearch} history={this.props.history} updateSearchResults={this.props.updateResults}/>
             </div>
         );
     }

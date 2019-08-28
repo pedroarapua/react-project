@@ -20,15 +20,25 @@ const api = axios.create({
 const getMethods = {
     /* Busca a informação de todos os heróis com base nos filtros selecionados */
     getHeroes (order, params){
+        
+        /* Busca os parâmetros enviados pela URL*/
         const getParams = new URLSearchParams(params);
+        let paramsUrl;
 
         if(getParams.get('name')){
-            console.log('nameStartsWith');
+            paramsUrl = '&nameStartsWith=' + getParams.get('name');
         }
 
-        const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24';
+        const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24' + paramsUrl;
         const filterOrder = '&orderBy=' + order;
-        const resp = api.get(url + filterOrder);
+        const resp = api.get(url + filterOrder).then(response => {
+            console.log(response);
+            return response;
+        })
+        .catch(error => {
+            return error.response;
+        });;
+
 
         return resp;
     },

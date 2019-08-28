@@ -7,3 +7,6 @@
 [0826/191449.528:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Program Files (x86)\reports: Acesso negado. (0x5)
 [0826/191449.533:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
 [0826/191449.534:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Program Files (x86)\reports: Acesso negado. (0x5)
+[0827/192127.624:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Program Files (x86)\reports: Acesso negado. (0x5)
+[0827/192127.628:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0827/192127.630:ERROR:crash_report_database_win.cc(580)] CreateDirectory C:\Program Files (x86)\reports: Acesso negado. (0x5)
