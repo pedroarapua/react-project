@@ -1,0 +1,14 @@
+.loading-wrapper{
+    text-align: center;
+    flex-grow: 1;
+    padding: 10% 20px 0;
+}
+.loading-wrapper > span{
+    display: block;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.loading-spin{
+    font-size: 50px;
+    animation: spin 2s infinite linear;
+}

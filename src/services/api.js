@@ -9,7 +9,7 @@ const hash = md5.create();
 
 const api = axios.create({
     baseURL: '//gateway.marvel.com/v1/public/',
-    timeout: 20000,
+    timeout: 30000,
     params: {
         ts: timestamp,
         apikey: publicApiKey,
@@ -23,36 +23,35 @@ const getMethods = {
         
         /* Busca os parâmetros enviados pela URL*/
         const getParams = new URLSearchParams(params);
-        let paramsUrl;
+        let paramsUrl = '';
 
-        if(getParams.get('name')){
-            paramsUrl = '&nameStartsWith=' + getParams.get('name');
+        if(getParams && getParams.get('name')){
+            paramsUrl += '&nameStartsWith=' + getParams.get('name');
+        }
+
+        if(getParams && getParams.get('offset')){
+            paramsUrl += '&offset=' + getParams.get('offset');
         }
 
         const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24' + paramsUrl;
         const filterOrder = '&orderBy=' + order;
-        const resp = api.get(url + filterOrder).then(response => {
-            console.log(response);
-            return response;
-        })
-        .catch(error => {
-            return error.response;
-        });;
-
+        
+        const resp = api.get(url + filterOrder);
+        console.log(resp);
 
         return resp;
     },
     /* Busca a informação de apenas um herói, de acordo com seu "ID" */
     getHero (id){
         const url = 'characters/' + id + '?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash;
-        const resp = api.get(url)
-            .then(response => {
-                return response;
-            })
-            .catch(error => {
-                return error.response;
-            });
+        const resp = api.get(url);
 
+        return resp;
+    },
+    /* Busca os Heróis favoritados */
+    getFavoriteHeroes(ids){
+        const resp = '';
+        console.log('ok');
         return resp;
     }
 };

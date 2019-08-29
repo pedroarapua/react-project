@@ -10,14 +10,19 @@ class SearchBar extends Component {
         search: ''
     };
     
-    handleSearch = e => {
+    /* Busca da lista de heróis, com base no nome digitado */
+    handleSearchKeyCode = e => {
+        if(e.keyCode === 13) this.handleSearch();
+    }
+
+    handleSearch = () => {
         const {search} = this.state;
         if(!search.length) return;
         this.props.history.push({
             pathname: '/busca',
             search: '?name=' + search
         });
-        this.props.updateSearchResults('?name=' + search);
+        this.props.updateSearchResults('-modified', '?name=' + search);
         this.props.updateOpen();
         this.setState({
             search: ''
@@ -45,6 +50,7 @@ class SearchBar extends Component {
                             type="text" 
                             placeholder="Ex: Spider-Man, Hulk, Iron Man etc..."
                             onChange={this.handleSearchInputChange}
+                            onKeyUp={this.handleSearchKeyCode}
                         />
                         <span onClick={this.handleSearch} title="Pesquisar" className="btn"><FaSearch /></span>
                     </div>

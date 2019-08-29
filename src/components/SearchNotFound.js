@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SearchNotFound.css';
 
-export default class components extends Component {
+export default class SearchNotFound extends Component {
     render() {
         return(
             <div className="search-not-found-wrapper margin-40 text-center">

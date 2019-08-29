@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import api from '../services/api';
 import {Link} from 'react-router-dom';
 import Menu from '../components/Menu';
+import LoadingScreen from '../components/Loading';
 import './Information.css';
 
+/* Componente com as informações do herói */
 class HeroInformation extends Component {
     render() {
         return (
@@ -26,6 +28,7 @@ class HeroInformation extends Component {
                                     <p className="margin-20">{hero.description ? hero.description : 'No momento não há uma descrição para este herói'}</p>
                                     <div className="buttons">
                                         <span className="btn">Adicionar aos Favoritos</span>
+                                        <Link to="/busca" className="btn btn-info">Voltar para a Busca</Link>
                                     </div>
                                 </div>
                             </div>
@@ -37,6 +40,7 @@ class HeroInformation extends Component {
     }
 }
 
+/* Tela de "Herói não encontrado" */
 class HeroNotFound extends Component {
     render() {
         return (
@@ -56,18 +60,18 @@ class Information extends Component {
 
     state = {
         hero: [],
-        status: 200
+        status: 200,
+        isLoading: false
     };
 
     async componentDidMount(){
+        this.setState({
+            isLoading: true
+        });
         const match = this.props.match;
         const response = await api.getHero(match.params.id);
 
-        console.log(response);
-
-        if(response.code === 'ECONNABORTED'){
-            console.log('timeout');
-        } else if(response.status === 200){
+        if(response.status === 200){
             this.setState({
                 hero: response.data.data.results
             });
@@ -75,16 +79,26 @@ class Information extends Component {
             this.setState({
                 status: response.status
             });
-        } 
+        }
+        this.setState({
+            isLoading: false
+        });
     }
 
     render() {
         let renderBlock;
 
-        if(this.state.status === 200){
-            renderBlock = <HeroInformation hero={this.state.hero}/>;
+        if(this.state.isLoading){
+            /* Tela de carregamento enquanto a API busca os heróis */
+            renderBlock = <LoadingScreen />
         } else {
-            renderBlock = <HeroNotFound />;
+            if(this.state.status === 200){
+                /* Listagem das informações do herói */
+                renderBlock = <HeroInformation hero={this.state.hero}/>;
+            } else {
+                /* Tela quando as informações de um herói não são encontradas */
+                renderBlock = <HeroNotFound />;
+            }
         }
 
         return (

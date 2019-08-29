@@ -1,0 +1,8 @@
+.pagination-wrapper{
+    margin-top: 25px;
+    padding: 0 15px;
+    width: 100%;
+}
+.pagination-items-list li{
+    display: inline-block;
+}

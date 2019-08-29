@@ -37,4 +37,7 @@
     .information-description .title{
         font-size: 28px;
     }
+    .information-wrapper-content .buttons .btn:not(:first-child){
+        margin-left: 20px;
+    }
 }
