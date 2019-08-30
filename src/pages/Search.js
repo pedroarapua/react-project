@@ -13,26 +13,45 @@ export default class Search extends Component {
         totalResults: 0,
         offsetResults: 0,
         notFound: false,
-        isLoading: false
+        isLoading: false,
+        timeout: false
     };
 
     componentDidMount(){
-        this.handleContentUpdate();
+        this.contentUpdate();
+    }
+
+    setLoad = () =>{
+        this.setState({
+            loadingItems: true
+        });
+    }
+
+    contentReload = () =>{
+        this.setState({
+            timeout: false
+        });
     }
     
     /* Chamada da API para buscar a lista de heróis*/
-    handleContentUpdate = async (filters, parameterSearch) =>{
+    contentUpdate = async (order, parameterSearch) =>{
         this.setState({
+            timeout: false,
             isLoading: true
         });
-        const response = await api.getHeroes(filters !== undefined ? filters : '-modified', parameterSearch !== undefined ? parameterSearch : this.props.location.search);
-
+        const response = await api.getHeroes(order !== undefined && !order ? order : '-modified', parameterSearch !== undefined ? parameterSearch : this.props.location.search);
         console.log(response);
-        if(response.data.data.count){
+        
+        if(response === 'ECONNABORTED'){
+            this.setState({
+                timeout: true
+            });
+        } else if(response && response.data.data.count){
             this.setState({
                 heroes: response.data.data.results,
                 totalResults: response.data.data.total,
                 offsetResults: response.data.data.offset,
+                limitResults: response.data.data.limit,
                 notFound: false
             });
         } else {
@@ -52,7 +71,10 @@ export default class Search extends Component {
             /* Tela de carregamento enquanto a API busca os heróis */
             pageResults = <LoadingScreen />
         } else {
-            if(this.state.notFound){
+            if(this.state.timeout){
+                /* Tela quando atinge o limite de tempo de carregamento da api */
+                pageResults = <SearchNotFound typePage="timeout" reload={this.contentReload} />;
+            } else if(this.state.notFound){
                 /* Tela de "Não Encontrado" nenhum resultado foi retornado */
                 pageResults = <SearchNotFound typePage="search"/>;
             } else {
@@ -62,9 +84,9 @@ export default class Search extends Component {
                         {this.state.heroes.map(hero => (
                             <ListBlock key={hero.id} hero={hero} />
                         ))}
-                        <Pagination updatePagination={this.handleContentUpdate} totalResults={this.state.totalResults} offsetResults={this.state.offsetResults}/>
+                        <Pagination updateResults={this.contentUpdate} totalResults={this.state.totalResults} offsetResults={this.state.offsetResults} limitResults={this.state.limitResults}/>
                     </div>
-                )
+                );
             }
         }
 
@@ -72,12 +94,12 @@ export default class Search extends Component {
             <div className="wrapper search-list-wrapper">
                 <div className="filter-bar">
                     <h1 className="title">Últimos Atualizados</h1>
-                    <Filters updateResults={this.handleContentUpdate}/>
+                    <Filters updateResults={this.contentUpdate}/>
                 </div>
                 <div className="container">
                     {pageResults}
                 </div>
-                <Menu updateResults={this.handleContentUpdate}/>
+                <Menu updateResults={this.contentUpdate}/>
             </div>
         );
     }

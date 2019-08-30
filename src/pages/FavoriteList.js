@@ -11,16 +11,17 @@ class FavoriteList extends Component {
         notFound: false,
         isLoading: false
     };
+    
 
     async componentDidMount(){
         this.setState({
             isLoading: true
         });
         const response = await api.getFavoriteHeroes();
-        if(response.data.data.count){
+        if(response && response.data.data.count){
             this.setState({
                 heroes: response.data.data.results,
-                notFound: false
+                notFound: true /* padrão - false */
             });
         } else {
             this.setState({

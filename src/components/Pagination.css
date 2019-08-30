@@ -1,8 +1,47 @@
 .pagination-wrapper{
+    align-items: center;
+    display: flex;
     margin-top: 25px;
     padding: 0 15px;
     width: 100%;
 }
+.pagination-items-list li > a, .pagination-items-list li > span{
+    border: 1px solid #FFF;
+    display: block;
+    height: 36px;
+    line-height: 31px;
+    width: 36px;
+    text-align: center;
+    transition: all 0.3s;
+}
+.pagination-items-list li > span{
+    background-color: #FFF;
+    color: #242641;
+}
+.pagination-items-list li.active > a, .pagination-items-list li > a:hover{
+    background-color: #FFF;
+    color: #242641;
+}
 .pagination-items-list li{
     display: inline-block;
+    margin: 5px;
+}
+.col{
+    flex-grow: 1;
+}
+.pagination-icons{
+    display: inline-block;
+    font-size: 19px;
+    vertical-align: sub;
+}
+@media only screen and (max-width: 991px){
+    .col{
+        flex: 0 0 100%;
+        width: 100%;
+    }   
+}
+@media only screen and (min-width: 992px){
+    .pagination-information{
+        text-align: right;
+    }
 }
