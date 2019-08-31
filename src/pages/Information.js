@@ -26,6 +26,28 @@ class HeroInformation extends Component {
                                 <div className="col-75 information-description">
                                     <h2 className="title">{hero.name}</h2>
                                     <p className="margin-20">{hero.description ? hero.description : 'No momento não há uma descrição para este herói'}</p>
+                                    <div  className="information-block-container">
+                                        <div className="margin-20">
+                                            <p className="information-block-title">Séries</p>
+                                            <div className="information-block">
+                                                {hero.series.items.map((serie, index) => (
+                                                    <div className="information-block-item" key={index}>
+                                                        {serie.name}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="margin-20">
+                                            <p className="information-block-title">Quadrinhos</p>
+                                            <div className="information-block">
+                                                {hero.comics.items.map((comic, index) => (
+                                                    <div className="information-block-item" key={index}>
+                                                        <div>{comic.name}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="buttons">
                                         <span className="btn">Adicionar aos Favoritos</span>
                                         <Link to="/busca" className="btn btn-info">Voltar para a Busca</Link>

@@ -9,7 +9,7 @@ const hash = md5.create();
 
 const api = axios.create({
     baseURL: '//gateway.marvel.com/v1/public/',
-    timeout: 20000,
+    timeout: 40000,
     params: {
         ts: timestamp,
         apikey: publicApiKey,
@@ -39,22 +39,9 @@ const getMethods = {
         const url = 'characters?ts=' + timestamp + '&apikey=' + publicApiKey + '&hash=' + hash + '&limit=24' + paramsUrl;
         const filterOrder = '&orderBy=' + order;
 
-        const intercep = api.interceptors.response.use(
-            config => config,
-            (error) => {
-                return error;
-            },
-        );
+        const resp = api.get(url + filterOrder);
 
-        console.log(intercep);
-        
-        if(intercep.error !== undefined){
-            return 'ECONNABORTED';
-        } else {
-            const resp = api.get(url + filterOrder);
-
-            return resp;
-        }
+        return resp;
     },
     /* Busca a informação de apenas um herói, de acordo com seu "ID" */
     getHero (id){
@@ -66,7 +53,6 @@ const getMethods = {
     /* Busca os Heróis favoritados */
     getFavoriteHeroes(ids){
         const resp = '';
-        console.log('ok');
         return resp;
     }
 };

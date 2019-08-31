@@ -13,14 +13,13 @@ class FiltersWrapper extends Component {
     handleFilter = () =>{
         const {order} = this.state;
         if(!order.length) return;
-        console.log(this.props.history.location.search);
         
-        /*this.props.history.push({
+        this.props.history.push({
             pathname: '/busca',
-            search: '?name=' + search
-        });*/
+            search: '?orderBy=' + this.state.order
+        });
 
-        this.props.updateResultsFilters(order);
+        this.props.updateResultsFilters(order, '');
         this.props.updateOpenFilters();
     }
 

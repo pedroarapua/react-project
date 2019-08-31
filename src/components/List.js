@@ -11,15 +11,10 @@ export default class List extends Component {
     }
 
     /* Processo para favoritar herói */
-    handleFavoriteHero(heroId){
-        this.setState(state => {
-            const favorites = state.favorites.concat(heroId);
-            return {
-                favorites
-            };
+    handleFavoriteHero = (heroId) =>{
+        this.setState({
+            favorites: [...this.state.favorites, heroId]
         });
-        
-        console.log(this.state);
     }
 
     render() {
@@ -41,7 +36,7 @@ export default class List extends Component {
                         <div className="list-block-buttons">
                             <IconContext.Provider value={{className: "btn-icons" }}>
                                 <Link to={"/informacao/" + hero.id} className="btn btn-info" title="Mais Informações"><FaQuestion /></Link>
-                                <span className="btn" title="Adicionar aos Favoritos" onClick={() => this.handleFavoriteHero(hero.id)}> <FaRegHeart /></span>
+                                <span className="btn" title="Adicionar aos Favoritos" onClick={(heroId) => this.handleFavoriteHero(hero.id)}> <FaRegHeart /></span>
                             </IconContext.Provider>
                         </div>
                     </div>

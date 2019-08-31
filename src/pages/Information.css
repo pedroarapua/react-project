@@ -17,6 +17,15 @@
     border-radius: 8px;
     border: 3px solid #424461;
 }
+.information-block{
+    margin-top: 10px;
+    line-height: 1.5;
+}
+.information-block-title{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 @media only screen and (max-width: 767px){
     .information-image{
         text-align: center;
@@ -30,14 +39,18 @@
         font-size: 22px;
     }
 }
-@media only screen and (min-width: 578px) and (max-width: 767px){
-
-}
 @media only screen and (min-width: 768px){
     .information-description .title{
         font-size: 28px;
     }
     .information-wrapper-content .buttons .btn:not(:first-child){
         margin-left: 20px;
+    }
+    .information-block-container{
+        display: flex;
+    }
+    .information-block-container > div{
+        padding-right: 15px;
+        flex-grow: 1;
     }
 }

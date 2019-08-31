@@ -39,9 +39,19 @@ export default class Search extends Component {
             timeout: false,
             isLoading: true
         });
-        const response = await api.getHeroes(order !== undefined && !order ? order : '-modified', parameterSearch !== undefined ? parameterSearch : this.props.location.search);
-        console.log(response);
-        
+        const paramOrder = new URLSearchParams(this.props.location.search);
+        let orderType;
+
+        if(order){
+            orderType = order;
+        } else if(paramOrder && paramOrder.get('orderBy')){
+            orderType = paramOrder.get('orderBy');
+        } else {
+            orderType = '';
+        }
+
+        const response = await api.getHeroes(orderType && orderType !== undefined ? orderType : '-modified', parameterSearch !== undefined ? parameterSearch : this.props.location.search);
+
         if(response === 'ECONNABORTED'){
             this.setState({
                 timeout: true
@@ -93,7 +103,7 @@ export default class Search extends Component {
         return (
             <div className="wrapper search-list-wrapper">
                 <div className="filter-bar">
-                    <h1 className="title">Últimos Atualizados</h1>
+                    <h1 className="title">Buscando Heróis</h1>
                     <Filters updateResults={this.contentUpdate}/>
                 </div>
                 <div className="container">
